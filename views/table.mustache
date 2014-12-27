@@ -1,0 +1,33 @@
+<table>
+    <tr>
+        <th>#Pos</th>
+        <th>Model</th>
+        <th>Price</th>
+        <th>Image</th>
+        <th>Delete</th>
+        <th>Edit</th>
+    </tr>
+    {{#matches}}
+        <tr id="line{{pos}}">
+            <td>{{pos}}</td>
+            <td title="{{continent}}">{{model}}</td>
+            <td>{{price}}</td>
+            <td>{{image}}</td>
+            <td><div id="delete{{pos}}" class="delete">DELETE</div></td>
+            <td><div id="edit{{pos}}" class="edit">EDIT</div></td>
+            <td id="toggle{{pos}}" style="display: none !important;">
+                {{>form_edit}}
+            </td>
+        </tr>
+
+    {{/matches}}
+    <tr id="last">
+        <td></td>
+        <td></td>
+        <td>{{#sum}}{{sum}}{{/sum}}</td>
+        <td></td>
+    </tr>
+</table>
+{{^matches}}
+    No matches found
+{{/matches}}
