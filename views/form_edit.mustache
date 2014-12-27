@@ -1,0 +1,21 @@
+<form id="car_edit{{pos}}" class="car_edit" action="/cars/{{pos}}" method="post" accept-charset="utf-8">
+    <fieldset>
+        <div class="line" >
+            <label for="model">Model</label>
+            <input type="text" name="model" value="{{model}}">
+        </div>
+        <div class="line" >
+            <label for="price">Price</label>
+            <input type="text" name="price" value="{{price}}">
+        </div>
+        <div class="line" >
+            <label for="image">Image</label>
+            <input type="text" name="image" value="{{image}}">
+        </div>
+        <div class="line" >
+            <label for="continent">Continent</label>
+            <input type="text" name="continent" value="{{continent}}">
+        </div>
+        <input type="submit" id="edit{{pos}}" value="edit">
+    </fieldset>
+</form>
