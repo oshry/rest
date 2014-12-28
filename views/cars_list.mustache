@@ -3,6 +3,7 @@
         <th>#Pos</th>
         <th>Model</th>
         <th>Price</th>
+        <th>Continent</th>
         <th>Image</th>
         <th>Delete</th>
         <th>Edit</th>
@@ -12,6 +13,7 @@
             <td>{{pos}}</td>
             <td title="{{continent}}">{{model}}</td>
             <td>{{price}}</td>
+            <td>{{continent}}</td>
             <td>{{image}}</td>
             <td><div id="delete{{pos}}" class="delete">DELETE</div></td>
             <td><div id="edit{{pos}}" class="edit">EDIT</div></td>
@@ -25,6 +27,9 @@
         <td></td>
         <td></td>
         <td>{{#sum}}{{sum}}{{/sum}}</td>
+        <td></td>
+        <td></td>
+        <td></td>
         <td></td>
     </tr>
 </table>
