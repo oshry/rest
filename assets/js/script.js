@@ -1,4 +1,5 @@
 $(document).ready(function() {
+        //New Car
         $("#car_form").submit(function(event){
             event.preventDefault();
             var data = $(this).serialize();
@@ -11,6 +12,7 @@ $(document).ready(function() {
                 }
             });
         });
+        //Edit Car
         $(".car_edit").submit(function(event){
             event.preventDefault();
             id = $(this).attr('id');
@@ -25,6 +27,7 @@ $(document).ready(function() {
                 }
             });
         });
+        //Delete Car
         $(".delete").click(function(e){
             var id = $(this).attr('id');
             id = id.replace("delete", "");
@@ -33,11 +36,11 @@ $(document).ready(function() {
                 type:"delete",
                 success: function(res){
                     location.reload();
-                    //alert("Car Number :"+$(this).attr('id')+" Deleted");
                 }
             });
 
         });
+        //Show Car Edit Form
         $('.edit').click(function(){
             var id = $(this).attr('id');
             id = id.replace("edit", "");
@@ -45,9 +48,9 @@ $(document).ready(function() {
                 // Animation complete.
              });
         });
-    $('input[name="continent"]:radio' ).change(function(){
-        var continent = $(this).val();
-        window.location.href = "http://rest/"+continent;
-
-    });
+        //Change Continent Event
+        $('input[name="continent"]:radio' ).change(function(){
+            var continent = $(this).val();
+            window.location.href = "http://rest/"+continent;
+        });
  });

@@ -50,7 +50,6 @@ if($paths[0]=='cars') {
                 }
                 $matches = $db->select("SELECT * FROM cars ".$where);
             }
-
             foreach ($matches as $k => $value) {
                 $matches[$k]['price'] = number_format($value['price']);
             }
@@ -60,7 +59,7 @@ if($paths[0]=='cars') {
         case 'DELETE':
             $name = array_shift($paths);
             if (empty($name)) {
-                die('Here');
+                die('Nothing To Delete');
             } else {
                 $db->delete("DELETE FROM `test2`.`cars` WHERE `cars`.`pos` = $name LIMIT 1");
             }
