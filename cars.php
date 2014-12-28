@@ -6,6 +6,7 @@ $path = $_SERVER['REQUEST_URI'];
 $paths = explode("/", $path);
 if(!$paths[0])
     array_shift($paths);
+
 if($paths[0]=='cars') {
     array_shift($paths);
     switch ($method) {
@@ -30,11 +31,30 @@ if($paths[0]=='cars') {
             return true;
             break;
         case 'GET':
-            $matches = $db->select("SELECT * FROM `cars`");
+            $name = array_shift($paths);
+            if (empty($name)) {
+                $matches = $db->select("SELECT * FROM `cars`");
+            }else{
+                switch ($name) {
+                    case "Asia":
+                        $where = "WHERE continent = 'Asia'";
+                        break;
+                    case "American":
+                        $where = "WHERE continent = 'American'";
+                        break;
+                    case "Japan":
+                        $where = "WHERE continent = 'Japan'";
+                        break;
+                    default:
+                        $where = "";
+                }
+                $matches = $db->select("SELECT * FROM cars ".$where);
+            }
+
             foreach ($matches as $k => $value) {
                 $matches[$k]['price'] = number_format($value['price']);
             }
-            $sum = $db->select("SELECT SUM(price) sum FROM `cars`");
+            $sum = $db->select("SELECT SUM(price) sum FROM `cars`".$where);
             print_r(json_encode(array("matches" => $matches, "sum"=>  number_format($sum[0]['sum']))));
             break;
         case 'DELETE':
@@ -43,7 +63,6 @@ if($paths[0]=='cars') {
                 die('Here');
             } else {
                 $db->delete("DELETE FROM `test2`.`cars` WHERE `cars`.`pos` = $name LIMIT 1");
-                //die('There'.$name);
             }
             return true;
             break;
@@ -51,6 +70,7 @@ if($paths[0]=='cars') {
 }else{
     // We only handle resources under 'cars'
     header('HTTP/1.1 404 Not Found');
+    die('not car');
 }
 
 ?>

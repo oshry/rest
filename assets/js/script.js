@@ -45,4 +45,9 @@ $(document).ready(function() {
                 // Animation complete.
              });
         });
+    $('input[name="continent"]:radio' ).change(function(){
+        var continent = $(this).val();
+        window.location.href = "http://rest/"+continent;
+
+    });
  });
