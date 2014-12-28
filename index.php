@@ -1,4 +1,5 @@
 <?php
+//die(getenv(DOMAIN_NAME));
 require 'vendor/autoload.php';
 require_once './language.php';
 $path = $_SERVER['REQUEST_URI'];
@@ -6,7 +7,7 @@ $paths = explode("/", $path);
 //Get Continent From Url
 $filter_key = $paths[1];
 //Load Url With The Right Data
-$cars_list = json_decode(file_get_contents('http://rest/cars/'.$filter_key), true);
+$cars_list = json_decode(file_get_contents('http://rest/cars/'.$filter_key.'?dataType=json'), true);
 //Filter List
 $filter_options = array('All', 'Asia', 'American', 'Japan');
 //Filter List To View

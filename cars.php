@@ -32,6 +32,8 @@ if($paths[0]=='cars') {
             break;
         case 'GET':
             $name = array_shift($paths);
+            $name = array_shift(explode('?', $name));
+            //error_log("Name=".$name);
             if (empty($name)) {
                 $matches = $db->select("SELECT * FROM `cars`");
             }else{
@@ -54,7 +56,14 @@ if($paths[0]=='cars') {
                 $matches[$k]['price'] = number_format($value['price']);
             }
             $sum = $db->select("SELECT SUM(price) sum FROM `cars`".$where);
-            print_r(json_encode(array("matches" => $matches, "sum"=>  number_format($sum[0]['sum']))));
+            header('Content-type: application/json; charset=utf-8');
+            if(isset($_GET['dataType'])) {
+                //Returns json
+                echo json_encode(array("matches" => $matches, "sum" => number_format($sum[0]['sum'])));
+            }else {
+                //Returns jsonp
+                echo "getCarsList(" . json_encode(array("matches" => $matches, "sum" => number_format($sum[0]['sum']))) . ")";
+            }
             break;
         case 'DELETE':
             $name = array_shift($paths);
